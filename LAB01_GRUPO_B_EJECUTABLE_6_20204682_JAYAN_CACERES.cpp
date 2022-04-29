@@ -3,7 +3,7 @@
 using namespace std;  
 int main(){
   int v[50], x, i=0;
-	cout<<"ingrese un num para pasarlo a binario: ";
+	cout<<"ingrese un num para pasarlo a binario que este entre 100 y 1000 ";
 	cin>>x;
 	do{
 		v[i]=x%2;
