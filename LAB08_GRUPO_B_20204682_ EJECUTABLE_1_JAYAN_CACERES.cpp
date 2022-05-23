@@ -1,4 +1,4 @@
-#include "polimorfismo.h"
+#include "forma_principal.h"
 #include "Rectangulo.h"
 #include "Elipse.h"
 #include "Circulo.h"
