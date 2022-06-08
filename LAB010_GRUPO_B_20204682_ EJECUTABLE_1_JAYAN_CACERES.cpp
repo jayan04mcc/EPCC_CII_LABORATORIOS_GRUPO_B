@@ -1,49 +1,81 @@
+//EJERCICIO 1
 #include <iostream>
-#include <stdlib.h>
 using namespace std;
-
-class ejercicio1{
-
-private:
-    int n;
-    int *p1;
+class Nodo{
 public:
-    ejercicio1(int n);
-    void pedir();
-    void mostrar();
-
+    int dato;
+    Nodo *siguiente;
+    Nodo(int dato)
+    {
+        this->dato = dato;
+        this->siguiente = NULL;
+    }
 };
 
-ejercicio1::ejercicio1(int _n){
-    n=_n;
+class agregar_ultimo{
+private:
+    void agregar1(Nodo *n, int dato);
+    void agregar_inicio1(Nodo *n,int dato);
+    void imprimir1(Nodo *n);
+public:
+    Nodo *cabeza;
+    void agregar2(int dato);
+    void imprimir2();
+};
+void agregar_ultimo::agregar1(Nodo *n, int dato){
+    if (n->siguiente == NULL)
+        {
+            n->siguiente = new Nodo(dato);
+        }
+        else
+        {
+            this->agregar1(n->siguiente, dato);
+        }
+
+}
+void agregar_ultimo::agregar_inicio1(Nodo *n,int dato){
+
+
+}
+void agregar_ultimo::imprimir1(Nodo *n){
+    if (n != NULL){
+        cout <<" "<< n->dato <<" ";
+        this->imprimir1(n->siguiente);
+    }
+    cout<<endl;
 }
 
-void ejercicio1::pedir(){
+void agregar_ultimo::agregar2(int dato){
 
+    if (this->cabeza == NULL){
 
-    p1=new int[n];
-    for(int i=0;i<n;i++){
-        cout<<"ingrese el numero "<<endl;
-        cin>>p1[i];
+        this->cabeza = new Nodo(dato);
     }
+    else{
 
+        this->agregar1(this->cabeza, dato);
+    }
 }
-void ejercicio1::mostrar(){
-    cout<<"estos  son los numeros ingresados"<<endl;
-    for(int i=0;i<n;i++){
-        cout<<p1[i]<<" ";
-    }
+void agregar_ultimo::imprimir2(){
+
+    cout << "DATOS :" <<endl;
+
+    this->imprimir1(this->cabeza);
+
 
 }
 
 int main(){
-    int j;
-    cout<<"cuantos numeros desea agregar "<<endl;
-    cin>>j;
-    ejercicio1 pp1(j);
-    pp1.pedir();
-    pp1.mostrar();
-
-
+int val,cant;
+agregar_ultimo *p1=new agregar_ultimo();
+cout<<"cuantos valores desea ingresar a la lista dinamica "<<endl;
+cin>>cant;
+for(int i=0;i<cant;i++){
+    cout<<"ingrese el "<<i+1<<" valor en la posicion " <<i<<endl;
+    cin>>val;
+    p1->agregar2(val);
+}
+    p1->imprimir2();
 
 }
+
