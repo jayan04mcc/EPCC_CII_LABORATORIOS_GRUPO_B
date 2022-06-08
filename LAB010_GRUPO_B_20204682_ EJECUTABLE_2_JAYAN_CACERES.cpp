@@ -1,32 +1,49 @@
 #include <iostream>
 #include <stdlib.h>
 using namespace std;
-void pedir();
-void mostrar();
-int n,*p1;
-int main()
-{
-    pedir();
-    mostrar();
-    delete[] p1;
 
-    return 0;
-    system("pause");
+class ejercicio1{
+
+private:
+    int n;
+    int *p1;
+public:
+    ejercicio1(int n);
+    void pedir();
+    void mostrar();
+
+};
+
+ejercicio1::ejercicio1(int _n){
+    n=_n;
 }
-void pedir(){
-    //int n,*p1;
-    cout<<"cuantos num desea agregar "<<endl;
-    cin>>n;
+
+void ejercicio1::pedir(){
+
+
     p1=new int[n];
     for(int i=0;i<n;i++){
-        cout<<"ingrese el num "<<endl;
+        cout<<"ingrese el numero "<<endl;
         cin>>p1[i];
     }
+
 }
-void mostrar(){
+void ejercicio1::mostrar(){
     cout<<"estos  son los numeros ingresados"<<endl;
-    for(int i=0;i<n;i++){
-        cout<<p1[i]<<endl;
+    for(int i=n-1;i>=0;i--){
+        cout<<p1[i]<<" ";
     }
+
+}
+
+int main(){
+    int j;
+    cout<<"cuantos numeros desea agregar "<<endl;
+    cin>>j;
+    ejercicio1 pp1(j);
+    pp1.pedir();
+    pp1.mostrar();
+
+
 
 }
