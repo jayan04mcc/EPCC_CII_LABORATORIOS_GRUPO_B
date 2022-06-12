@@ -1,81 +1,64 @@
 //EJERCICIO 1
-#include <iostream>
-using namespace std;
-class Nodo{
+class nodo{
 public:
-    int dato;
-    Nodo *siguiente;
-    Nodo(int dato)
-    {
-        this->dato = dato;
-        this->siguiente = NULL;
-    }
-};
-
-class agregar_ultimo{
-private:
-    void agregar1(Nodo *n, int dato);
-    void agregar_inicio1(Nodo *n,int dato);
-    void imprimir1(Nodo *n);
+int dato; // en este caso es un numero entero
+nodo *siguiente;//este puntero va a apuntar al siguiente elemento .
 public:
-    Nodo *cabeza;
-    void agregar2(int dato);
-    void imprimir2();
+void agregar(int numero);
+void mostrar2();
 };
-void agregar_ultimo::agregar1(Nodo *n, int dato){
-    if (n->siguiente == NULL)
-        {
-            n->siguiente = new Nodo(dato);
-        }
-        else
-        {
-            this->agregar1(n->siguiente, dato);
-        }
-
+nodo *pi,*pa,*pf;
+void nodo::agregar(int numero){
+if(pi == NULL){// en el caso que haya solo 1 nodo
+pi = new nodo();
+pi->dato= numero;
+pf=pi;//el puntero final apunta a NULL
+}else{
+pa=new nodo();
+pf->siguiente=pa;
+pa->dato=numero;
+pf=pa;
 }
-void agregar_ultimo::agregar_inicio1(Nodo *n,int dato){
-
-
+pf->siguiente=NULL;
 }
-void agregar_ultimo::imprimir1(Nodo *n){
-    if (n != NULL){
-        cout <<" "<< n->dato <<" ";
-        this->imprimir1(n->siguiente);
-    }
-    cout<<endl;
+void nodo::mostrar2(){
+pa=pi;
+while (pa!=NULL){
+cout<<pa->dato<<"->";
+pa=pa->siguiente;
 }
-
-void agregar_ultimo::agregar2(int dato){
-
-    if (this->cabeza == NULL){
-
-        this->cabeza = new Nodo(dato);
-    }
-    else{
-
-        this->agregar1(this->cabeza, dato);
-    }
 }
-void agregar_ultimo::imprimir2(){
+void menu(){
+int opc,dat,dat2;
+nodo *pp=new nodo();
+do{
+cout<<" MENU "<<endl;
+cout<<" [1].inserar elementos en la lista "<<endl;
+cout<<" [2].mostrar elementos de la lista "<<endl;
+cout<<" [4].eliminar"<<endl;
 
-    cout << "DATOS :" <<endl;
-
-    this->imprimir1(this->cabeza);
-
-
+cout<<" [3].salir del programa "<<endl;
+cin>>opc;
+switch(opc){
+case 1:
+cout<<"ingrese el dato"<<endl;
+cin>>dat;
+pp->agregar(dat);
+cout<<endl;
+system("pause");
+break;
+case 2:
+pp->mostrar2();
+cout<<endl;
+system("pause");
+break;
 }
+system("cls");
 
+}while(opc!=3);
+}
 int main(){
-int val,cant;
-agregar_ultimo *p1=new agregar_ultimo();
-cout<<"cuantos valores desea ingresar a la lista dinamica "<<endl;
-cin>>cant;
-for(int i=0;i<cant;i++){
-    cout<<"ingrese el "<<i+1<<" valor en la posicion " <<i<<endl;
-    cin>>val;
-    p1->agregar2(val);
+menu();
+getch();
+return 0;
 }
-    p1->imprimir2();
-
-}
-
