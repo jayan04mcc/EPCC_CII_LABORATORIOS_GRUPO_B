@@ -1,49 +1,58 @@
 #include <iostream>
 #include <stdlib.h>
+#include <conio.h>
 using namespace std;
-
-class ejercicio1{
-
-private:
-    int n;
-    int *p1;
+class nodo{
 public:
-    ejercicio1(int n);
-    void pedir();
-    void mostrar();
-
+int dato; // en este caso es un numero entero
+nodo *siguiente; //este puntero va a apuntar al siguiente elemento .
+public:
+void agregar_final(int numero);
+void mostrar2();
 };
-
-ejercicio1::ejercicio1(int _n){
-    n=_n;
+nodo *pi,*pa,*pf;
+void nodo::agregar_final(int numero){
+pa= new nodo();
+pa->dato=numero;
+pa->siguiente=pi;
+pi=pa;
 }
-
-void ejercicio1::pedir(){
-
-
-    p1=new int[n];
-    for(int i=0;i<n;i++){
-        cout<<"ingrese el numero "<<endl;
-        cin>>p1[i];
-    }
-
+void nodo::mostrar2(){
+pa=pi;
+while (pa!=NULL){
+cout<<pa->dato<<"->";
+pa=pa->siguiente;
 }
-void ejercicio1::mostrar(){
-    cout<<"estos  son los numeros ingresados"<<endl;
-    for(int i=n-1;i>=0;i--){
-        cout<<p1[i]<<" ";
-    }
-
 }
+void menu(){
+int opc,dat;
+nodo *pp=new nodo();
+do{
+cout<<" MENU "<<endl;
+cout<<" [1].inserar elementos en la lista "<<endl;
+cout<<" [2].mostrar elementos de la lista "<<endl;
+cout<<" [3].salir del programa "<<endl;
+cin>>opc;
+switch(opc){
+case 1:
+cout<<"ingrese el dato"<<endl;
+cin>>dat;
+pp->agregar_final(dat);
+cout<<endl;
+system("pause");
+break;
+case 2:
 
+pp->mostrar2();
+cout<<endl;
+system("pause");
+break;
+}
+system("cls");
+}while(opc!=3);
+}
 int main(){
-    int j;
-    cout<<"cuantos numeros desea agregar "<<endl;
-    cin>>j;
-    ejercicio1 pp1(j);
-    pp1.pedir();
-    pp1.mostrar();
-
-
-
+menu();
+getch();
+return 0;
 }
