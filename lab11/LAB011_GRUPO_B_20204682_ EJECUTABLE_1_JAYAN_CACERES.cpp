@@ -22,7 +22,7 @@ void nodo::pilas(int numero){//el puntero auxiliar q apunte al pi para que lo
 void nodo::mostrar_pila(){
     pa=pi;
     while (pa!=NULL){
-        cout<<pa->dato<<"->";
+        cout<<pa->dato<<"->"<<endl;
         pa=pa->siguiente;
     }
 }
